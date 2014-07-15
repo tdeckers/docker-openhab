@@ -36,5 +36,5 @@ org.openhab.persistence.rrd4j-1.5.0.jar
 ```
 
 Example run command:
-```docker -d -p 8080:8080 -v src/configuration:/opt/openhab/configurations tdeckers/openhab```
+```docker -d -p 8080:8080 -v /tmp/configuration:/opt/openhab/configurations tdeckers/openhab```
 
