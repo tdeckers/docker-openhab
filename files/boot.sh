@@ -1,5 +1,40 @@
 #!/bin/bash
 
+###########################
+# Configure Addon libraries
+
+SOURCE=/opt/openhab/addons-avail
+DEST=/opt/openhab/addons
+ADDONFILE=/opt/openhab/configurations/addons.cfg
+
+function addons {
+  # Remove all links first
+  rm $DEST/*
+
+  # create new links based on input file
+  while read STRING
+  do
+    echo Processing $STRING...
+    if [ -f "$SOURCE/$STRING" ]
+    then
+      ln -s $SOURCE/$STRING $DEST/$STRING
+      echo link created.
+    else
+      echo not found.
+    fi
+  done < "$ADDONFILE"
+}
+
+if [ -f "$ADDONFILE" ]
+then
+  addons
+else
+  echo addons.cfg not found.
+fi
+
+######################
+# Decide how to launch
+
 ETH0_FOUND=`grep "eth0" /proc/net/dev`
 
 if [ -n "$ETH0_FOUND" ] ;
