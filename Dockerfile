@@ -1,14 +1,13 @@
 #
 # Openhab 1.5.0
 # * configuration is injected
-# * addons:
 #
 FROM ubuntu:14.04
 MAINTAINER Tom Deckers <tom@ducbase.com>
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get -y install openjdk-7-jre unzip
+RUN apt-get -y install openjdk-7-jre unzip supervisor
 
 # Download Openhab 1.5.0
 ADD https://github.com/openhab/openhab/releases/download/v1.5.0/distribution-1.5.0-runtime.zip /tmp/distribution-1.5.0-runtime.zip
@@ -23,9 +22,10 @@ ADD http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4
 RUN mkdir -p /opt/openhab/lib
 RUN tar -zxf /tmp/hyperic-sigar-1.6.4.tar.gz --wildcards --strip-components=2 -C /opt/openhab hyperic-sigar-1.6.4/sigar-bin/lib/*
 
-# Add boot script
-ADD files/boot.sh /usr/local/bin/boot.sh
+# Configure supervisor to run openhab
+ADD files/supervisord.conf /etc/supervisor/supervisord.conf
+ADD files/openhab.conf /etc/supervisor/conf.d/openhab.conf
 
-EXPOSE 8080 8443
+EXPOSE 8080 8443 5555 9001
 
-CMD /usr/local/bin/boot.sh
+CMD ["/usr/bin/supervisord"]
