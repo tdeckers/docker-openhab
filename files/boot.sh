@@ -1,31 +1,13 @@
 #!/bin/bash
-SOURCE=/opt/openhab/addons-avail
-DEST=/opt/openhab/addons
-ADDONFILE=/opt/openhab/configurations/addons.cfg
 
-function addons {
-  # Remove all links first
-  rm $DEST/*
+ETH0_FOUND=`grep "eth0" /proc/net/dev`
 
-  # create new links based on input file
-  while read STRING
-  do
-    echo Processing $STRING...
-    if [ -f "$SOURCE/$STRING" ]
-    then
-      ln -s $SOURCE/$STRING $DEST/$STRING
-      echo link created.
-    else
-      echo not found.
-    fi
-  done < "$ADDONFILE"
-}
-
-if [ -f "$ADDONFILE" ]
-then
-  addons
-else
-  echo addons.cfg not found.
+if [ -n "$ETH0_FOUND" ] ;
+then 
+  # We're in a container with regular eth0 (default)
+  exec /usr/bin/supervisord
+else 
+  # We're in a container without initial network.  Wait for it...
+  /usr/local/bin/pipework --wait
+  exec /usr/bin/supervisord
 fi
-
-exec /opt/openhab/start.sh

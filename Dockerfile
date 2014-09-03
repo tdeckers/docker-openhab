@@ -1,4 +1,4 @@
-#
+
 # Openhab 1.5.0
 # * configuration is injected
 #
@@ -22,10 +22,23 @@ ADD http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4
 RUN mkdir -p /opt/openhab/lib
 RUN tar -zxf /tmp/hyperic-sigar-1.6.4.tar.gz --wildcards --strip-components=2 -C /opt/openhab hyperic-sigar-1.6.4/sigar-bin/lib/*
 
+# Add pipework to wait for network if needed
+ADD files/pipework /usr/local/bin/pipework
+RUN chmod +x /usr/local/bin/pipework
+
 # Configure supervisor to run openhab
 ADD files/supervisord.conf /etc/supervisor/supervisord.conf
 ADD files/openhab.conf /etc/supervisor/conf.d/openhab.conf
+ADD files/boot.sh /usr/local/bin/boot.sh
+RUN chmod +x /usr/local/bin/boot.sh
+
+# Restart openhab on network up.  Needed when starting with --net="none" to add network later.
+ADD files/openhab-restart /etc/network/if-up.d/openhab-restart
+RUN chmod +x /etc/network/if-up.d/openhab-restart
+
+# Clean up
+RUN rm -rf /tmp/*
 
 EXPOSE 8080 8443 5555 9001
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/local/bin/boot.sh"]
