@@ -11,10 +11,11 @@ Building
 Running
 =======
 
-* The image exposes Openhab ports 8080 and 8443.
+* The image exposes Openhab ports 8080, 8443, 5555 and 9001 (supervisord).
 * It expects you to make a configurations directory on the host to /opt/openhab/configurations.  This allows you to inject your openhab configuration into the container (see example below).
 * To enable specific plugins, add a file with name addons.cfg in the configuration directory which lists all addons you want to add.
-* 
+* The openhab process is managed using supervisord.  You can manage the process (and view logs) by exposing port 9001.
+* The container supports starting without network (--net="none"), and adding network interfaces using pipework.
 
 Example content for addons.cfg:
 ```
