@@ -17,6 +17,7 @@ RUN mkdir -p /opt/openhab/addons-avail
 RUN unzip -d /opt/openhab /tmp/distribution-1.5.0-runtime.zip
 RUN unzip -d /opt/openhab/addons-avail /tmp/distribution-1.5.0-addons.zip
 RUN chmod +x /opt/openhab/start.sh
+RUN mkdir -p /opt/openhab/logs
 
 ADD http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4.tar.gz /tmp/hyperic-sigar-1.6.4.tar.gz
 RUN mkdir -p /opt/openhab/lib
