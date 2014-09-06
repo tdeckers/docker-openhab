@@ -1,5 +1,16 @@
 #!/bin/bash
 
+####################
+# Configure timezone
+
+TIMEZONEFILE=/opt/openhab/configurations/timezone
+
+if [ -f "$TIMEZONEFILE" ]
+then
+  cp $TIMEZONEFILE /etc/timezone
+  dpkg-reconfigure -f noninteractive tzdata
+fi
+
 ###########################
 # Configure Addon libraries
 
