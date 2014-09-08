@@ -1,5 +1,5 @@
 
-# Openhab 1.5.0
+# Openhab 1.5.1
 # * configuration is injected
 #
 FROM ubuntu:14.04
