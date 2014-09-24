@@ -29,6 +29,9 @@ ADD http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4
 RUN mkdir -p /opt/openhab/lib
 RUN tar -zxf /tmp/hyperic-sigar-1.6.4.tar.gz --wildcards --strip-components=2 -C /opt/openhab hyperic-sigar-1.6.4/sigar-bin/lib/*
 
+# Add myopenhab 1.4.0 which works fine for openhab 1.5.0
+ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-avail/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
+
 # Add pipework to wait for network if needed
 ADD files/pipework /usr/local/bin/pipework
 RUN chmod +x /usr/local/bin/pipework

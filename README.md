@@ -46,3 +46,11 @@ Europe/Brussels
 Example run command:
 ```docker -d -p 8080:8080 -v /tmp/configuration:/opt/openhab/configurations tdeckers/openhab```
 
+MyOpenhab
+=========
+This container includes the myopenhab addon (org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar). See https://my.openhab.org/docs.
+
+To obtain the uuid and secret files, you first have to start openhab with myopenhab enabled. After that you can view the content of the file in the container with the command:
+```
+$ sudo cat /var/lib/docker/aufs/mnt/`sudo docker inspect -f '{{.Id}}' CONTAINER_SHORT_NAME`/opt/openhab/webapps/static/{uuid,secret}
+```
