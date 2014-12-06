@@ -27,9 +27,7 @@ RUN \
   wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-7u67-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz && \
   tar -zxC /opt -f /tmp/jdk-7u67-linux-x64.tar.gz && \
   ln -s /opt/jdk1.7.0_67 /opt/jdk7 && \
-  PATH=$PATH:/opt/jdk7:/opt/jdk7/bin && \
   echo 'PATH=$PATH:/opt/jdk7:/opt/jdk7/bin' >> /etc/environment && \
-  export PATH  && \
   # Prepare Openhab Folderstructure
   mkdir -p /opt/openhab/addons-available && \
   unzip -d /opt/openhab /tmp/distribution-runtime.zip && \
