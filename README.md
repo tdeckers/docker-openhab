@@ -1,7 +1,7 @@
 Overview
 ========
 
-Docker image for Openhab (1.6.0).
+Docker image for Openhab (1.6.1).
 
 Building
 ========
@@ -12,7 +12,7 @@ Running
 =======
 
 * The image exposes Openhab ports 8080, 8443, 5555 and 9001 (supervisord).
-* It expects you to make a configurations directory on the host to /opt/openhab/configurations.  This allows you to inject your openhab configuration into the container (see example below).
+* It expects you to make a configurations directory on the host to /etc/openhab.  This allows you to inject your openhab configuration into the container (see example below).
 * To enable specific plugins, add a file with name addons.cfg in the configuration directory which lists all addons you want to add.
 
 Example content for addons.cfg:
@@ -44,13 +44,4 @@ Europe/Brussels
 ```
 
 Example run command:
-```docker -d -p 8080:8080 -v /tmp/configuration:/opt/openhab/configurations tdeckers/openhab```
-
-MyOpenhab
-=========
-This container includes the myopenhab addon (org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar). See https://my.openhab.org/docs.
-
-To obtain the uuid and secret files, you first have to start openhab with myopenhab enabled. After that you can view the content of the file in the container with the command:
-```
-$ sudo cat /var/lib/docker/aufs/mnt/`sudo docker inspect -f '{{.Id}}' CONTAINER_SHORT_NAME`/opt/openhab/webapps/static/{uuid,secret}
-```
+```docker -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/ tweyand/openhab```
