@@ -61,8 +61,8 @@ else
   echo Consider running the Docker with a openhab configuration
   echo 
   echo --------------------------------------------------------
-  cp -R /tmp/demo-openhab/configurations/* /etc/openhab/
-  ln -s /tmp/demo-openhab/addons/* /opt/openhab/addons/
+  cp -R /opt/openhab/demo-configuration/configurations/* /etc/openhab/
+  ln -s /opt/openhab/demo-configuration/addons/* /opt/openhab/addons/
   ln -s /etc/openhab/openhab_default.cfg /etc/openhab/openhab.cfg
 fi
 

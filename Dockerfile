@@ -6,6 +6,7 @@ MAINTAINER Tim Weyand <tim.weyand@me.com>
 # Download Openhab 1.6.1
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-runtime.zip /tmp/distribution-runtime.zip
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-addons.zip /tmp/distribution-addons.zip
+ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-demo-configuration.zip /tmp/demo-openhab.zip
 
 # Install.
 RUN \
@@ -47,11 +48,10 @@ RUN \
   chmod +x /etc/network/if-up.d/openhab-restart && \
   rm -rf /tmp/*
 
-# Add Demo & myopenhab
-ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-demo-configuration.zip /tmp/demo-openhab.zip
+# Add my.openhab
 ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-available
 
-RUN unzip -d /tmp/demo-openhab /tmp/demo-openhab.zip 
+RUN unzip -d /opt/openhab/demo-configuration /tmp/demo-openhab.zip 
 
 EXPOSE 8080 8443 5555 9001
 
