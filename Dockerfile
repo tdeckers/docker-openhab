@@ -20,7 +20,7 @@ RUN \
   tar -zxC /opt -f /tmp/jdk-7u67-linux-x64.tar.gz && \
   ln -s /opt/jdk1.7.0_67 /opt/jdk7 && \
   echo 'PATH=$PATH:/opt/jdk7:/opt/jdk7/bin' >> /etc/environment && \
-  echo ‘export PATH' >> /etc/environment && \
+  echo 'export PATH' >> /etc/environment && \
   PATH=$PATH:/opt/jdk7:/opt/jdk7/bin && \
   export PATH
 
