@@ -7,6 +7,8 @@ MAINTAINER Tim Weyand <tim.weyand@me.com>
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-runtime.zip /tmp/distribution-runtime.zip
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-addons.zip /tmp/distribution-addons.zip
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-demo-configuration.zip /tmp/demo-openhab.zip
+# Add my.openhab
+ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
 
 # Install.
 RUN \
@@ -39,6 +41,7 @@ RUN \
   mkdir -p /opt/openhab/addons-available && \
   unzip -d /opt/openhab /tmp/distribution-runtime.zip && \
   unzip -d /opt/openhab/addons-available /tmp/distribution-addons.zip && \
+  mv /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-available && \
   mv /opt/openhab/configurations /etc/openhab && \
   ln -s /etc/openhab /opt/openhab/configurations && \
   chmod +x /opt/openhab/start.sh && \
@@ -47,9 +50,6 @@ RUN \
   chmod +x /usr/local/bin/boot.sh && \
   chmod +x /etc/network/if-up.d/openhab-restart && \
   rm -rf /tmp/*
-
-# Add my.openhab
-ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-available
 
 RUN unzip -d /opt/openhab/demo-configuration /tmp/demo-openhab.zip 
 
