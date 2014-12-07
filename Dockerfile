@@ -46,6 +46,8 @@ RUN \
   chmod +x /etc/network/if-up.d/openhab-restart && \
   rm -rf /tmp/*
 
+ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-demo-configuration.zip -O /tmp/demo-openhab.zip
+
 EXPOSE 8080 8443 5555 9001
 
 CMD ["/usr/local/bin/boot.sh"]
