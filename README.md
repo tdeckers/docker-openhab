@@ -17,26 +17,26 @@ Running
 
 Example content for addons.cfg:
 ```
-org.openhab.action.mail-1.6.0.jar
-org.openhab.action.squeezebox-1.6.0.jar
-org.openhab.action.xmpp-1.6.0.jar
-org.openhab.binding.exec-1.6.0.jar
-org.openhab.binding.http-1.6.0.jar
-org.openhab.binding.knx-1.6.0.jar
-org.openhab.binding.mqtt-1.6.0.jar
-org.openhab.binding.networkhealth-1.6.0.jar
-org.openhab.binding.serial-1.6.0.jar
-org.openhab.binding.squeezebox-1.6.0.jar
-org.openhab.io.squeezeserver-1.6.0.jar
-org.openhab.persistence.cosm-1.6.0.jar
-org.openhab.persistence.db4o-1.6.0.jar
-org.openhab.persistence.gcal-1.6.0.jar
-org.openhab.persistence.rrd4j-1.6.0.jar
+org.openhab.action.mail
+org.openhab.action.squeezebox
+org.openhab.action.xmpp
+org.openhab.binding.exec
+org.openhab.binding.http
+org.openhab.binding.knx
+org.openhab.binding.mqtt
+org.openhab.binding.networkhealth
+org.openhab.binding.serial
+org.openhab.binding.squeezebox
+org.openhab.io.squeezeserver
+org.openhab.persistence.cosm
+org.openhab.persistence.db4o
+org.openhab.persistence.gcal
+org.openhab.persistence.rrd4j
 ```
 
 * The openhab process is managed using supervisord.  You can manage the process (and view logs) by exposing port 9001.
 * The container supports starting without network (--net="none"), and adding network interfaces using pipework.
-* You can add a timezone file in the configurations directory, which will be placed in /etc/timezone.
+* You can add a timezone file in the configurations directory, which will be placed in /etc/timezone. Default: UTC
 
 Example content for timezone:
 ```

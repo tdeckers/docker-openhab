@@ -14,9 +14,9 @@ fi
 ###########################
 # Configure Addon libraries
 
-SOURCE=/opt/openhab/addons-avail
+SOURCE=/opt/openhab/addons-available
 DEST=/opt/openhab/addons
-ADDONFILE=/opt/openhab/configurations/addons.cfg
+ADDONFILE=/etc/openhab/addons.cfg
 
 function addons {
   # Remove all links first
@@ -26,9 +26,9 @@ function addons {
   while read STRING
   do
     echo Processing $STRING...
-    if [ -f "$SOURCE/$STRING" ]
+    if [ -f "$SOURCE/$STRING-*.jar" ]
     then
-      ln -s $SOURCE/$STRING $DEST/$STRING
+      ln -s $SOURCE/$STRING-*.jar $DEST/
       echo link created.
     else
       echo not found.

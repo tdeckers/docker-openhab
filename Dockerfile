@@ -19,7 +19,11 @@ RUN \
   wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-7u67-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz && \
   tar -zxC /opt -f /tmp/jdk-7u67-linux-x64.tar.gz && \
   ln -s /opt/jdk1.7.0_67 /opt/jdk7 && \
-  echo 'PATH=$PATH:/opt/jdk7:/opt/jdk7/bin' >> /etc/environment 
+  echo 'PATH=$PATH:/opt/jdk7:/opt/jdk7/bin' >> /etc/environment && \
+  echo ‘export PATH' >> /etc/environment && \
+  PATH=$PATH:/opt/jdk7:/opt/jdk7/bin && \
+  export PATH
+
 
 # Add pipework to wait for network if needed
 ADD files/pipework /usr/local/bin/pipework
@@ -33,7 +37,7 @@ ADD files/openhab-restart /etc/network/if-up.d/openhab-restart
 RUN \
   mkdir -p /opt/openhab/addons-available && \
   unzip -d /opt/openhab /tmp/distribution-runtime.zip && \
-  unzip -d /opt/openhab/addons-avail /tmp/distribution-addons.zip && \
+  unzip -d /opt/openhab/addons-available /tmp/distribution-addons.zip && \
   mv /opt/openhab/configurations /etc/openhab && \
   chmod +x /opt/openhab/start.sh && \
   mkdir -p /opt/openhab/logs && \
