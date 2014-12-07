@@ -39,6 +39,7 @@ RUN \
   unzip -d /opt/openhab /tmp/distribution-runtime.zip && \
   unzip -d /opt/openhab/addons-available /tmp/distribution-addons.zip && \
   mv /opt/openhab/configurations /etc/openhab && \
+  ln -s /etc/openhab /opt/openhab/configurations && \
   chmod +x /opt/openhab/start.sh && \
   mkdir -p /opt/openhab/logs && \
   chmod +x /usr/local/bin/pipework && \
@@ -46,7 +47,11 @@ RUN \
   chmod +x /etc/network/if-up.d/openhab-restart && \
   rm -rf /tmp/*
 
+# Add Demo & myopenhab
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-demo-configuration.zip /tmp/demo-openhab.zip
+ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-available
+
+RUN unzip -d /tmp/demo-openhab /tmp/demo-openhab.zip 
 
 EXPOSE 8080 8443 5555 9001
 

@@ -51,6 +51,7 @@ fi
 if [ -f $CONFIG_DIR/openhab.conf ]
 then
   echo configuration found.
+  rm -rf /tmp/demo-openhab*
 else
   echo --------------------------------------------------------
   echo          NO openhab.cfg CONFIGURATION FOUND
@@ -60,10 +61,8 @@ else
   echo Consider running the Docker with a openhab configuration
   echo 
   echo --------------------------------------------------------
-  unzip -d /tmp/demo-openhab /tmp/demo-openhab.zip
   cp -R /tmp/demo-openhab/configurations/* /etc/openhab/
-  cp -R /tmp/demo-openhab/addons/* /opt/openhab/addons/
-  rm -rf /tmp/demo-openhab*
+  ln -s /tmp/demo-openhab/addons/* /opt/openhab/addons/
   ln -s /etc/openhab/openhab_default.cfg /etc/openhab/openhab.cfg
 fi
 
