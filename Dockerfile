@@ -1,7 +1,9 @@
 # Openhab 1.6.1
 # * configuration is injected
-FROM ubuntu
+FROM tweyand/ubuntu-base
 MAINTAINER Tim Weyand <tim.weyand@me.com>
+
+ENV OPENHAB_VERSION 1.6.1
 
 # Download Openhab 1.6.1
 ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-runtime.zip /tmp/distribution-runtime.zip
@@ -11,21 +13,7 @@ ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6
 ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
 
 # Install.
-RUN \
-  apt-get -y update && \
-  apt-get -y upgrade && \
-  apt-get -y install unzip supervisor wget
-
-# Download and install Oracle JDK
-# For direct download see: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-installation-of-java-jdk-on-linux
-RUN \
-  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-7u67-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz && \
-  tar -zxC /opt -f /tmp/jdk-7u67-linux-x64.tar.gz && \
-  ln -s /opt/jdk1.7.0_67 /opt/jdk7 && \
-  echo 'PATH=$PATH:/opt/jdk7:/opt/jdk7/bin' >> /etc/environment && \
-  echo 'export PATH' >> /etc/environment && \
-  PATH=$PATH:/opt/jdk7:/opt/jdk7/bin && \
-  export PATH
+RUN apt-get -y supervisor oracle-java8-installer
 
 
 # Add pipework to wait for network if needed
@@ -41,6 +29,7 @@ RUN \
   mkdir -p /opt/openhab/addons-available && \
   unzip -d /opt/openhab /tmp/distribution-runtime.zip && \
   unzip -d /opt/openhab/addons-available /tmp/distribution-addons.zip && \
+  unzip -d /opt/openhab/demo-configuration /tmp/demo-openhab.zip && \
   mv /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-available && \
   mv /opt/openhab/configurations /etc/openhab && \
   ln -s /etc/openhab /opt/openhab/configurations && \
@@ -51,7 +40,7 @@ RUN \
   chmod +x /etc/network/if-up.d/openhab-restart && \
   rm -rf /tmp/*
 
-RUN unzip -d /opt/openhab/demo-configuration /tmp/demo-openhab.zip 
+RUN 
 
 EXPOSE 8080 8443 5555 9001
 
