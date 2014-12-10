@@ -1,7 +1,7 @@
 Overview
 ========
 
-Docker image for Openhab (1.6.0).
+Docker image for Openhab (1.6.1).
 
 Building
 ========
@@ -17,21 +17,21 @@ Running
 
 Example content for addons.cfg:
 ```
-org.openhab.action.mail-1.6.0.jar
-org.openhab.action.squeezebox-1.6.0.jar
-org.openhab.action.xmpp-1.6.0.jar
-org.openhab.binding.exec-1.6.0.jar
-org.openhab.binding.http-1.6.0.jar
-org.openhab.binding.knx-1.6.0.jar
-org.openhab.binding.mqtt-1.6.0.jar
-org.openhab.binding.networkhealth-1.6.0.jar
-org.openhab.binding.serial-1.6.0.jar
-org.openhab.binding.squeezebox-1.6.0.jar
-org.openhab.io.squeezeserver-1.6.0.jar
-org.openhab.persistence.cosm-1.6.0.jar
-org.openhab.persistence.db4o-1.6.0.jar
-org.openhab.persistence.gcal-1.6.0.jar
-org.openhab.persistence.rrd4j-1.6.0.jar
+org.openhab.action.mail-1.6.1.jar
+org.openhab.action.squeezebox-1.6.1.jar
+org.openhab.action.xmpp-1.6.1.jar
+org.openhab.binding.exec-1.6.1.jar
+org.openhab.binding.http-1.6.1.jar
+org.openhab.binding.knx-1.6.1.jar
+org.openhab.binding.mqtt-1.6.1.jar
+org.openhab.binding.networkhealth-1.6.1.jar
+org.openhab.binding.serial-1.6.1.jar
+org.openhab.binding.squeezebox-1.6.1.jar
+org.openhab.io.squeezeserver-1.6.1.jar
+org.openhab.persistence.cosm-1.6.1.jar
+org.openhab.persistence.db4o-1.6.1.jar
+org.openhab.persistence.gcal-1.6.1.jar
+org.openhab.persistence.rrd4j-1.6.1.jar
 ```
 
 * The openhab process is managed using supervisord.  You can manage the process (and view logs) by exposing port 9001.
