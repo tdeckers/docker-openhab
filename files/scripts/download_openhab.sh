@@ -2,7 +2,7 @@
 
 wget --no-check-certificate --no-cookies -O /tmp/distribution-runtime.zip https://github.com/openhab/openhab/releases/download/v$OPENHAB_VERSION/distribution-$OPENHAB_VERSION-runtime.zip 
 wget --no-check-certificate --no-cookies -O /tmp/distribution-addons.zip https://github.com/openhab/openhab/releases/download/v$OPENHAB_VERSION/distribution-$OPENHAB_VERSION-addons.zip
-wget --no-check-certificate --no-cookies -O /tmp/demo-openhab.zip https://github.com/openhab/openhab/releases/download/v$OPENHAB_VERSION/distribution-$OPENHAB_VERSIONdemo-configuration.zip
+wget --no-check-certificate --no-cookies -O /tmp/demo-openhab.zip https://github.com/openhab/openhab/releases/download/v$OPENHAB_VERSION/distribution-$OPENHAB_VERSION-demo-configuration.zip
 wget --no-check-certificate --no-cookies -O /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
 
 rm -rf /opt/openhab

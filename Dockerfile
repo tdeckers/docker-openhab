@@ -11,6 +11,7 @@ RUN apt-get install -y supervisor oracle-java8-installer
 ADD files /root/docker-files/
 
 RUN \
+  chmod +x /root/docker-files/scripts/download_openhab.sh  && \
   cp /root/docker-files/pipework /usr/local/bin/pipework && \
   cp /root/docker-files/supervisord.conf /etc/supervisor/supervisord.conf && \
   cp /root/docker-files/openhab.conf /etc/supervisor/conf.d/openhab.conf && \
@@ -25,9 +26,7 @@ RUN \
 #
 # Download openHAB based on Environment OPENHAB_VERSION
 #
-RUN \
-  chmod +x /root/docker-files/scripts/download_openhab.sh  && \
-  /root/docker-files/scripts/download_openhab.sh
+RUN /root/docker-files/scripts/download_openhab.sh
 
 EXPOSE 8080 8443 5555 9001
 
