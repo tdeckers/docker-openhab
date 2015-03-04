@@ -1,4 +1,3 @@
-
 # Openhab 1.6.1
 # * configuration is injected
 #
@@ -15,39 +14,27 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=acc
 RUN tar -zxC /opt -f /tmp/jdk-7u67-linux-x64.tar.gz
 RUN ln -s /opt/jdk1.7.0_67 /opt/jdk7
 
-# Download Openhab 1.6.1
-ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-runtime.zip /tmp/distribution-1.6.1-runtime.zip
-ADD https://github.com/openhab/openhab/releases/download/v1.6.1/distribution-1.6.1-addons.zip /tmp/distribution-1.6.1-addons.zip
+ENV OPENHAB_VERSION 1.6.2
 
-RUN mkdir -p /opt/openhab/addons-avail
-RUN unzip -d /opt/openhab /tmp/distribution-1.6.1-runtime.zip
-RUN unzip -d /opt/openhab/addons-avail /tmp/distribution-1.6.1-addons.zip
-RUN chmod +x /opt/openhab/start.sh
-RUN mkdir -p /opt/openhab/logs
+ADD files /root/docker-files/
 
-ADD http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4.tar.gz /tmp/hyperic-sigar-1.6.4.tar.gz
-RUN mkdir -p /opt/openhab/lib
-RUN tar -zxf /tmp/hyperic-sigar-1.6.4.tar.gz --wildcards --strip-components=2 -C /opt/openhab hyperic-sigar-1.6.4/sigar-bin/lib/*
+RUN \
+  chmod +x /root/docker-files/scripts/download_openhab.sh  && \
+  cp /root/docker-files/pipework /usr/local/bin/pipework && \
+  cp /root/docker-files/supervisord.conf /etc/supervisor/supervisord.conf && \
+  cp /root/docker-files/openhab.conf /etc/supervisor/conf.d/openhab.conf && \
+  cp /root/docker-files/boot.sh /usr/local/bin/boot.sh && \
+  cp /root/docker-files/openhab-restart /etc/network/if-up.d/openhab-restart && \
+  mkdir -p /opt/openhab/logs && \
+  chmod +x /usr/local/bin/pipework && \
+  chmod +x /usr/local/bin/boot.sh && \
+  chmod +x /etc/network/if-up.d/openhab-restart && \
+  rm -rf /tmp/*
 
-# Add myopenhab 1.4.0 which works fine for openhab 1.6.1 (?)
-ADD https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar /opt/openhab/addons-avail/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
-
-# Add pipework to wait for network if needed
-ADD files/pipework /usr/local/bin/pipework
-RUN chmod +x /usr/local/bin/pipework
-
-# Configure supervisor to run openhab
-ADD files/supervisord.conf /etc/supervisor/supervisord.conf
-ADD files/openhab.conf /etc/supervisor/conf.d/openhab.conf
-ADD files/boot.sh /usr/local/bin/boot.sh
-RUN chmod +x /usr/local/bin/boot.sh
-
-# Restart openhab on network up.  Needed when starting with --net="none" to add network later.
-ADD files/openhab-restart /etc/network/if-up.d/openhab-restart
-RUN chmod +x /etc/network/if-up.d/openhab-restart
-
-# Clean up
-RUN rm -rf /tmp/*
+#
+# Download openHAB based on Environment OPENHAB_VERSION
+#
+RUN /root/docker-files/scripts/download_openhab.sh
 
 EXPOSE 8080 8443 5555 9001
 

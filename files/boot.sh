@@ -1,9 +1,11 @@
 #!/bin/bash
 
+CONFIG_DIR=/etc/openhab/
+
 ####################
 # Configure timezone
 
-TIMEZONEFILE=/opt/openhab/configurations/timezone
+TIMEZONEFILE=$CONFIG_DIR/timezone
 
 if [ -f "$TIMEZONEFILE" ]
 then
@@ -14,9 +16,9 @@ fi
 ###########################
 # Configure Addon libraries
 
-SOURCE=/opt/openhab/addons-avail
+SOURCE=/opt/openhab/addons-available
 DEST=/opt/openhab/addons
-ADDONFILE=/opt/openhab/configurations/addons.cfg
+ADDONFILE=$CONFIG_DIR/addons.cfg
 
 function addons {
   # Remove all links first
@@ -26,9 +28,9 @@ function addons {
   while read STRING
   do
     echo Processing $STRING...
-    if [ -f "$SOURCE/$STRING" ]
+    if [ -f $SOURCE/$STRING-*.jar ]
     then
-      ln -s $SOURCE/$STRING $DEST/$STRING
+      ln -s $SOURCE/$STRING-*.jar $DEST/
       echo link created.
     else
       echo not found.
@@ -41,6 +43,27 @@ then
   addons
 else
   echo addons.cfg not found.
+fi
+
+###########################################
+# Download Demo if no configuration is given
+
+if [ -f $CONFIG_DIR/openhab.cfg ]
+then
+  echo configuration found.
+  rm -rf /tmp/demo-openhab*
+else
+  echo --------------------------------------------------------
+  echo          NO openhab.cfg CONFIGURATION FOUND
+  echo
+  echo                = using demo files =
+  echo
+  echo Consider running the Docker with a openhab configuration
+  echo 
+  echo --------------------------------------------------------
+  cp -R /opt/openhab/demo-configuration/configurations/* /etc/openhab/
+  ln -s /opt/openhab/demo-configuration/addons/* /opt/openhab/addons/
+  ln -s /etc/openhab/openhab_default.cfg /etc/openhab/openhab.cfg
 fi
 
 ######################
