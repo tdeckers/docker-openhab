@@ -60,3 +60,11 @@ Example run command (with Demo)
 ```docker -d -p 8080:8080 tdeckers/openhab```
 
 Start the Demo with: ```http://[IP-of-Docker-Host]:8080/openhab.app?sitemap=demo```
+
+
+Contributors
+============
+* maddingo
+* scottt732
+* TimWeyand
+* tdeckers
