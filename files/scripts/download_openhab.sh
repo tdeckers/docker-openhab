@@ -13,10 +13,13 @@ else
 fi
 
 wget --quiet --no-check-certificate --no-cookies -O /tmp/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar https://my.openhab.org/downloads/org.openhab.io.myopenhab-1.4.0-SNAPSHOT.jar
+wget --quiet --no-check-certificate --no-cookies -O /tmp/hyperic-sigar-1.6.4.tar.gz http://downloads.sourceforge.net/project/sigar/sigar/1.6/hyperic-sigar-1.6.4.tar.gz
 
 rm -rf /opt/openhab
 mkdir -p /opt/openhab/addons-available
 mkdir -p /opt/openhab/logs
+mkdir -p /opt/openhab/lib
+tar -zxf /tmp/hyperic-sigar-1.6.4.tar.gz --wildcards --strip-components=2 -C /opt/openhab hyperic-sigar-1.6.4/sigar-bin/lib/*
 unzip -q -d /opt/openhab /tmp/distribution-runtime.zip
 unzip -q -d /opt/openhab/addons-available /tmp/distribution-addons.zip
 unzip -q -d /opt/openhab/demo-configuration /tmp/demo-openhab.zip
