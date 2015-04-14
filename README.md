@@ -61,10 +61,24 @@ Example run command (with Demo)
 
 Start the Demo with: ```http://[IP-of-Docker-Host]:8080/openhab.app?sitemap=demo```
 
+HABmin
+=======
+
+HABmin is not included in this deployment.  However you can easily add is as follows:
+```
+docker run -d -p 8080:8080 -v /<your_location>/webapps/habmin:/opt/openhab/webapps/habmin -v /<your_location>/openhab/config:/etc/openhab -v /<your_location>/openhab/addons-available/habmin:/opt/openhab/addons-available/habmin tdeckers/openhab
+```
+
+Then add these lines to addon.cfg
+```
+habmin/org.openhab.binding.zwave
+habmin/org.openhab.io.habmin
+```
 
 Contributors
 ============
 * maddingo
 * scottt732
 * TimWeyand
+* dprus
 * tdeckers
