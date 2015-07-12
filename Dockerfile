@@ -14,7 +14,7 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=acc
 RUN tar -zxC /opt -f /tmp/jdk-7u79-linux-x64.tar.gz
 RUN ln -s /opt/jdk1.7.0_79 /opt/jdk7
 
-ENV OPENHAB_VERSION 1.6.2
+ENV OPENHAB_VERSION 1.7.0
 
 ADD files /root/docker-files/
 
