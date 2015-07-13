@@ -27,6 +27,7 @@ function addons {
   # create new links based on input file
   while read STRING
   do
+    STRING=${STRING%$'\r'}
     echo Processing $STRING...
     if [ -f $SOURCE/$STRING-*.jar ]
     then
