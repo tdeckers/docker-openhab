@@ -54,16 +54,29 @@ Europe/Brussels
 ```
 
 Example: run command (with your openHAB config)
-```docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/ wetware/openhab```
+```
+docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/ wetware/openhab
+```
 
 
-Example: Map configuration and logging directory as well as allow access to Supervisor:  docker run -d -p 8080:8080 -p 9001:9001 -v /tmp/configurations/:/etc/openhab -v /tmp/logs:/opt/openhab/logs wetware/openhab
+Example: Map configuration and logging directory as well as allow access to Supervisor:
+```
+docker run -d -p 8080:8080 -p 9001:9001 -v /tmp/configurations/:/etc/openhab -v /tmp/logs:/opt/openhab/logs wetware/openhab
+```
 
 Example: run command (with Demo)
-```docker run -d -p 8080:8080 tdeckers/openhab```
+```
+docker run -d -p 8080:8080 tdeckers/openhab
+```
 
-Start the Demo with: ```http://[IP-of-Docker-Host]:8080/openhab.app?sitemap=demo```
-Access Supervisor with: ```http://[IP-of-Docker-Host]:9001```
+Start the Demo with: 
+```
+http://[IP-of-Docker-Host]:8080/openhab.app?sitemap=demo
+```
+Access Supervisor with: 
+```
+http://[IP-of-Docker-Host]:9001
+```
 
 
 HABmin
