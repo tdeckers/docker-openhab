@@ -4,6 +4,8 @@
 FROM ubuntu:14.04
 MAINTAINER Marcus of Wetware Labs <marcus@wetwa.re>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install unzip supervisor wget
