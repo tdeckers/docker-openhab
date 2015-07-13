@@ -25,6 +25,7 @@ RUN \
   cp /root/docker-files/pipework /usr/local/bin/pipework && \
   cp /root/docker-files/supervisord.conf /etc/supervisor/supervisord.conf && \
   cp /root/docker-files/openhab.conf /etc/supervisor/conf.d/openhab.conf && \
+  cp /root/docker-files/openhab_debug.conf /etc/supervisor/conf.d/openhab_debug.conf && \
   cp /root/docker-files/boot.sh /usr/local/bin/boot.sh && \
   cp /root/docker-files/openhab-restart /etc/network/if-up.d/openhab-restart && \
   mkdir -p /opt/openhab/logs && \
