@@ -2,7 +2,7 @@
 # * configuration is injected
 #
 FROM ubuntu:14.04
-MAINTAINER Tom Deckers <tom@ducbase.com>
+MAINTAINER Marcus of Wetware Labs <marcus@wetwa.re>
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
