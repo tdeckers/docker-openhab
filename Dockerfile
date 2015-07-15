@@ -1,4 +1,4 @@
-# Openhab 1.6.2
+# Openhab 1.7.0
 # * configuration is injected
 #
 FROM ubuntu:14.04
