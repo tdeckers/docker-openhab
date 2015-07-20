@@ -3,9 +3,9 @@
 
 if [[ $OPENHAB_VERSION == "SNAPSHOT" ]]
 then
-  wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-runtime.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.7.0-SNAPSHOT-runtime.zip
-  wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-addons.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.7.0-SNAPSHOT-addons.zip
-  wget --quiet --no-check-certificate --no-cookies -O /tmp/demo-openhab.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.7.0-SNAPSHOT-demo.zip
+  wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-runtime.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.8.0-SNAPSHOT-runtime.zip
+  wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-addons.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.8.0-SNAPSHOT-addons.zip
+  wget --quiet --no-check-certificate --no-cookies -O /tmp/demo-openhab.zip https://openhab.ci.cloudbees.com/job/openHAB/lastBuild/artifact/distribution/target/distribution-1.8.0-SNAPSHOT-demo.zip
 else
   wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-runtime.zip https://bintray.com/artifact/download/openhab/bin/distribution-$OPENHAB_VERSION-runtime.zip 
   wget --quiet --no-check-certificate --no-cookies -O /tmp/distribution-addons.zip https://bintray.com/artifact/download/openhab/bin/distribution-$OPENHAB_VERSION-addons.zip 
