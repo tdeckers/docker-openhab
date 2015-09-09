@@ -1,18 +1,12 @@
-# Openhab 1.6.2
+# Openhab 1.7.0
 # * configuration is injected
 #
-FROM ubuntu:14.04
+FROM armv7/armhf-java7
 MAINTAINER Tom Deckers <tom@ducbase.com>
 
-RUN apt-get -y update
+RUN apt-get update
 RUN apt-get -y upgrade
-RUN apt-get -y install unzip supervisor wget
-
-# Download and install Oracle JDK
-# For direct download see: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-installation-of-java-jdk-on-linux
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-7u79-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
-RUN tar -zxC /opt -f /tmp/jdk-7u79-linux-x64.tar.gz
-RUN ln -s /opt/jdk1.7.0_79 /opt/jdk7
+RUN apt-get -y install unzip supervisor
 
 ENV OPENHAB_VERSION 1.7.0
 
