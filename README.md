@@ -1,7 +1,7 @@
 Overview
 ========
 
-Docker image for Openhab (1.7.0). Included is JRE 1.8.45 instead of JDK 1.7.79 (in original tdeckers/openhab)
+Docker image for Openhab (1.7.1). Included is JRE 1.8.45.
 
 
 Official DEMO Included
@@ -11,7 +11,7 @@ If you do not have a openHAB configuration yet, you can start this Docker withou
 
 PULL
 =======
-```docker pull wetware/openhab```
+```docker pull tdeckers/openhab```
 
 Building
 ========
@@ -55,13 +55,13 @@ Europe/Brussels
 
 Example: run command (with your openHAB config)
 ```
-docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/ wetware/openhab
+docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/tdeckers/openhab
 ```
 
 
 Example: Map configuration and logging directory as well as allow access to Supervisor:
 ```
-docker run -d -p 8080:8080 -p 9001:9001 -v /tmp/configurations/:/etc/openhab -v /tmp/logs:/opt/openhab/logs wetware/openhab
+docker run -d -p 8080:8080 -p 9001:9001 -v /tmp/configurations/:/etc/openhab -v /tmp/logs:/opt/openhab/logs tdeckers/openhab
 ```
 
 Example: run command (with Demo)
