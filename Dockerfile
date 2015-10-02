@@ -37,7 +37,8 @@ RUN \
 #
 # Download openHAB based on Environment OPENHAB_VERSION
 #
-RUN /root/docker-files/scripts/download_openhab.sh
+RUN /root/docker-files/scripts/download_openhab.sh \
+  && rm -rf /root/*
 
 EXPOSE 8080 8443 5555 9001
 
