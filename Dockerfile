@@ -25,6 +25,7 @@ COPY files/supervisord.conf /etc/supervisor/supervisord.conf
 COPY files/openhab.conf /etc/supervisor/conf.d/openhab.conf
 COPY files/openhab_debug.conf /etc/supervisor/conf.d/openhab_debug.conf
 COPY files/boot.sh /usr/local/bin/boot.sh
+COPY files/openhab.sh /usr/local/bin/openhab.sh
 COPY files/openhab-restart /etc/network/if-up.d/openhab-restart
 
 RUN mkdir -p /opt/openhab/logs
