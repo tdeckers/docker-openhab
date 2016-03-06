@@ -55,7 +55,7 @@ Europe/Brussels
 
 Example: run command (with your openHAB config)
 ```
-docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/tdeckers/openhab
+docker run -d -p 8080:8080 -v /tmp/configuration:/etc/openhab/ tdeckers/openhab
 ```
 
 
