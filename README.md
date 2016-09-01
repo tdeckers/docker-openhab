@@ -1,7 +1,7 @@
 Overview
 ========
 
-Docker image for Openhab (1.7.1). Included is JRE 1.8.45.
+Docker image for Openhab (1.8.3). Included is JRE 1.8.45.
 
 
 Official DEMO Included

@@ -1,4 +1,4 @@
-# Openhab 1.7.1
+# Openhab 1.8.3
 # * configuration is injected
 #
 FROM java:openjdk-8-jdk
@@ -10,9 +10,7 @@ RUN apt-get -y update \
   && apt-get -y upgrade \
   && apt-get -y install unzip supervisor wget
 
-RUN apt-get update && apt-get -y upgrade && apt-get -y install unzip supervisor wget
-
-ENV OPENHAB_VERSION 1.7.1
+ENV OPENHAB_VERSION 1.8.3
 
 #
 # Download openHAB based on Environment OPENHAB_VERSION
