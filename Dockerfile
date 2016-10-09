@@ -18,7 +18,8 @@ ENV OPENHAB_VERSION 1.8.3
 # Download openHAB based on Environment OPENHAB_VERSION
 #
 COPY files/scripts/download_openhab.sh /root/
-RUN /root/download_openhab.sh
+RUN /root/download_openhab.sh \
+  && rm /root/download_openhab.sh
 
 COPY files/pipework /usr/local/bin/pipework
 COPY files/supervisord.conf /etc/supervisor/supervisord.conf
