@@ -7,8 +7,10 @@ MAINTAINER Tom Deckers <tom@ducbase.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update \
-  && apt-get -y upgrade \
-  && apt-get -y install unzip supervisor wget
+  && apt-get -y install unzip supervisor wget \
+  && apt-get clean \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV OPENHAB_VERSION 1.8.3
 
