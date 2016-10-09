@@ -12,7 +12,7 @@ RUN apt-get -y update \
   && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV OPENHAB_VERSION 1.8.3
+ARG OPENHAB_VERSION=1.8.3
 
 #
 # Download openHAB based on Environment OPENHAB_VERSION
