@@ -23,6 +23,10 @@ Running
 
 * The image exposes openHAB ports 8080, 8443, 5555 and 9001 (supervisord).
 * It expects you to map a configurations directory on the host to /etc/openhab. This allows you to inject your openhab configuration into the container (see example below).
+  * /etc/openhab - openHAB configuration
+  * /opt/openhab/logs - openHAB logs
+  * /opt/openhab/webapps/static - Folder for uuid & secret for http://my.openhab.org
+  * /opt/openhab/etc - Folder for data like db4o and rr4jd
 * To enable specific plugins, add a file with name addons.cfg in the configuration directory which lists all addons you want to add.
 
 Example content for addons.cfg:
