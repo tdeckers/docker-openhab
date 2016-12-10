@@ -1,16 +1,22 @@
 # Openhab 1.8.3
 # * configuration is injected
 #
-FROM java:openjdk-8-jdk
+FROM ubuntu:16.04
 MAINTAINER Tom Deckers <tom@ducbase.com>
 
+ENV OPENHAB_VERSION 1.8.3
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -y update \
-  && apt-get -y upgrade \
-  && apt-get -y install unzip supervisor wget
-
-ENV OPENHAB_VERSION 1.8.3
+RUN  apt-get -y update \
+  && apt-get -y install software-properties-common \
+  && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+  && apt-add-repository ppa:webupd8team/java \
+  && apt-get -y update \
+  && apt-get -y install unzip supervisor wget \
+  && apt-get -y install oracle-java8-installer oracle-java8-set-default \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && rm -rf /var/cache/oracle-jdk8-installer
 
 #
 # Download openHAB based on Environment OPENHAB_VERSION
@@ -18,7 +24,6 @@ ENV OPENHAB_VERSION 1.8.3
 COPY files/scripts/download_openhab.sh /root/
 RUN /root/download_openhab.sh
 
-COPY files/pipework /usr/local/bin/pipework
 COPY files/supervisord.conf /etc/supervisor/supervisord.conf
 COPY files/openhab.conf /etc/supervisor/conf.d/openhab.conf
 COPY files/openhab_debug.conf /etc/supervisor/conf.d/openhab_debug.conf
