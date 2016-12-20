@@ -9,8 +9,15 @@ TIMEZONEFILE=$CONFIG_DIR/timezone
 
 if [ -f "$TIMEZONEFILE" ]
 then
-  cp $TIMEZONEFILE /etc/timezone
+  TIMEZONE=`cat $TIMEZONEFILE`
+  LOCALTIMEFILE="/usr/share/zoneinfo/$TIMEZONE"
+  if [ -f "$LOCALTIMEFILE" ]
+  then
+  ln -sf $LOCALTIMEFILE  /etc/localtime
   dpkg-reconfigure -f noninteractive tzdata
+  else
+    echo "unknown localtime"
+  fi
 fi
 
 ###########################
